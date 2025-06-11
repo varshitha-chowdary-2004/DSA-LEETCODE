@@ -1,21 +1,26 @@
 class Solution {
-    TreeNode prev = null;
-
-    public boolean inOrderTraversal(TreeNode root) {
-        if (root == null) return true;
-
-        // Traverse left subtree
-        if (!inOrderTraversal(root.left)) return false;
-
-        // Check current node value
-        if (prev != null && root.val <= prev.val) return false;
-        prev = root;  // update prev to current
-
-        // Traverse right subtree
-        return inOrderTraversal(root.right);
+    public static boolean flag;
+    public long maximum(TreeNode root){
+       if(root==null) return Long.MIN_VALUE;
+       long leftMax=maximum(root.left);
+       if(leftMax >=root.val) flag = false;
+       long rightMAx=maximum(root.right);
+       return Math.max(root.val,Math.max(leftMax,rightMAx));
     }
-
+    public long minimum(TreeNode root){
+        if(root==null) return Long.MAX_VALUE;
+       long leftMin=minimum(root.left);
+       long rightMin=minimum(root.right);
+       if(rightMin <=root.val) flag = false;
+       return Math.min(root.val,Math.min(leftMin,rightMin));
+    }
     public boolean isValidBST(TreeNode root) {
-        return inOrderTraversal(root);
+        flag = true;
+        maximum(root);
+        minimum(root);
+        return flag;
+        
+
     }
 }
+    
