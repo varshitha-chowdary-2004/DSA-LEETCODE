@@ -1,13 +1,16 @@
 class Solution {
-    public void inOrderTraversal(TreeNode root,List<Integer> arr){
+    static int r;
+    static int ans;
+    public void Inorder(TreeNode root, int k){
         if(root==null) return;
-        inOrderTraversal(root.left,arr);
-        arr.add(root.val);
-        inOrderTraversal(root.right,arr);
-    }
+        Inorder(root.left,k);
+        if(r==k) ans = root.val;
+        r+=1;
+        Inorder(root.right,k);
+    } 
     public int kthSmallest(TreeNode root, int k) {
-        List<Integer> arr = new ArrayList<>();
-        inOrderTraversal(root,arr);
-        return arr.get(k-1);
+        r=1;
+        Inorder(root,k);
+        return ans;
     }
 }
