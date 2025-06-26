@@ -3,7 +3,7 @@ class Solution {
         int n = str.length();
         int[] pre = new int[n+1];
         int[] suf = new int[n+1];
-        pre[0]=0;suf[n-1] =0;
+        pre[0]=0;suf[n] =0;
         for(int i=0;i<n;i++){
             char ch = str.charAt(i);
             pre[i+1] += pre[i];
