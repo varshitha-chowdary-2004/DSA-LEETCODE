@@ -5,7 +5,7 @@ class Solution {
             if(res==k) return 1;//valid way
             else return 0;  
         }
-        //if(dp[i][res+sum]!=-1) return dp[i][res+sum];
+        if(dp[i][res+sum]!=-1) return dp[i][res+sum];
         int add = ways(i+1,nums,res-nums[i],k,dp);
         int sub = ways(i+1,nums,res+nums[i],k,dp);
         return dp[i][res+sum] = add+sub;
