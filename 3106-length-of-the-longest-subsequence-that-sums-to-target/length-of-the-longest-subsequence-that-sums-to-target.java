@@ -21,7 +21,7 @@ class Solution {
             }
         }
         long ans =  los(0,nums,target,dp);
-        if(ans<=Long.MIN_VALUE) return -1;
+        if(ans==Long.MIN_VALUE) return -1;
         return (int) ans;
     }
 }
