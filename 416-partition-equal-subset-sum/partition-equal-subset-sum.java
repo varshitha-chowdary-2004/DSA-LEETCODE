@@ -1,44 +1,31 @@
 class Solution {
-    /*public boolean subsetSum(int i,int[] arr,int k,int[][] dp){
-        if(i<0) {
-            if(k==0) return true;
+    public boolean subsetSum(int i,int target,int[] nums){
+        if(i>=nums.length){
+            if(target==0) return true;
             else return false;
         }
-        boolean ans = false;
-        if(dp[i][k] != -1) return (dp[i][k]==1);
-        boolean skip = subsetSum(i-1,arr,k,dp);
-        if(arr[i]>k) {
-            dp[i][k] = (skip)?1:0;
-            return skip;
-        }
-        boolean pick = subsetSum(i-1,arr,k-arr[i],dp);
-        ans = skip||pick;
-        dp[i][k] = (ans)?1:0;
-        return ans;
-    }*/
+        boolean skip = subsetSum(i+1,target,nums);
+        if(nums[i]>target) return skip;
+        boolean pick = subsetSum(i+1,target-nums[i],nums);
+        return pick || skip;
+    }
     public boolean canPartition(int[] nums) {
-        int n = nums.length;
-        int sum=0;
+        int sum =0;
         for(int ele:nums){
             sum+=ele;
         }
         if(sum%2==1) return false;
-        int[][] dp = new int[nums.length][sum/2 +1];
-        
-        for(int i=0;i<nums.length;i++){
-            for(int j=0;j<sum/2+1;j++){
-                
+        int[][] dp = new int[nums.length][sum/2+1];
+        for(int i=0;i<dp.length;i++){
+            for(int j=0;j<dp[0].length;j++){
                 boolean skip = (i>0)?(dp[i-1][j]==1):(j==0);
-                if(nums[i]>j) {
-                    dp[i][j] = (skip)?1:0;
-                }else{
+                if(nums[i]>j) dp[i][j] = (skip)?1:0;
+                else{
                     boolean pick = (i>0)?(dp[i-1][j-nums[i]]==1):(j==0);
-                    
-                    dp[i][j] = (skip||pick)?1:0;
+                    dp[i][j] = (pick||skip)?1:0;
                 }
-                
             }
         }
-        return dp[n-1][sum/2]==1;
+        return dp[nums.length-1][sum/2]==1;
     }
 }
