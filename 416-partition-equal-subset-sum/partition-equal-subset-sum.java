@@ -1,14 +1,4 @@
 class Solution {
-    public boolean subsetSum(int i,int target,int[] nums){
-        if(i>=nums.length){
-            if(target==0) return true;
-            else return false;
-        }
-        boolean skip = subsetSum(i+1,target,nums);
-        if(nums[i]>target) return skip;
-        boolean pick = subsetSum(i+1,target-nums[i],nums);
-        return pick || skip;
-    }
     public boolean canPartition(int[] nums) {
         int sum =0;
         for(int ele:nums){
