@@ -29,7 +29,6 @@ class Solution {
             }else{
                 while(chances>k){
                     freq[s.charAt(l)-'A']--;
-                    for(int ele : freq) maxf = Math.max(maxf,ele);
                     l++;
                     chances = (r-l+1) - maxf;
                 }   
