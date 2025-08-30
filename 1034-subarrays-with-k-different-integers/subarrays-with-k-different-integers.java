@@ -10,9 +10,8 @@ class Solution {
                 if(map.get(nums[l])==0) map.remove(nums[l]);
                 l++;
             }
-            if(map.size()<=k){
-                count+=(r-l+1);
-            }
+            
+            count+=(r-l+1);
             r++;
         }
         return count;
