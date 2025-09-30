@@ -26,6 +26,8 @@ class Solution {
         while(q.size()>0){
             Triplet top = q.remove();
             if (top.d > diff[top.r][top.c]) continue;
+            if (top.r == row - 1 && top.c == col - 1) return top.d;
+
             //right 
             if((top.c)+1<col){
                 int eff = heights[top.r][top.c] - heights[top.r][(top.c)+1];
