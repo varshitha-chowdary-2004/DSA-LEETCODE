@@ -1,9 +1,16 @@
 class Solution {
     public int mySqrt(int n) {
-    long res = 1;
-    while(res*res <= n){
-        res++;
+    int res = 1;
+    int l = 0 ,r = n;
+    while(l<=r){
+       long mid = (l+r)/2;
+       if(mid*mid <=n){
+        res = (int) mid;
+        l = (int) mid+1;
+       }else{
+        r =(int) mid-1;
+       }
     }
-    return (int)res-1;
+    return res;
     }
 }
